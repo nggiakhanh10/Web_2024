@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CV Xin Việc</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      .wrapper {
+        display: flex;
+      }
+
+      .left-margin {
+        width: 20%;
+        background-color: #e0f7fa; /* Màu xanh nhạt */
+      }
+
+      .right-margin {
+        width: 30%;
+        background-color: #e0f7fa; /* Màu xanh nhạt */
+      }
+
+      .content {
+        width: 50%;
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        border: 3px solid #00796b; /* Màu xanh ngọc */
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        color: #00796b; /* Màu xanh ngọc */
+      }
+
+      h2 {
+        color: #004d40; /* Màu xanh đậm */
+        margin-bottom: 10px;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      section {
+        border: 1px solid #b0bec5; /* Màu xám nhạt */
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển động */
+      }
+
+      section:hover {
+        transform: scale(1.05); /* Phóng to khung khi di chuột qua */
+      }
+
+      .flex-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .flex-item {
+        width: 48%;
+      }
+
+      .contact {
+        background-color: #e3f2fd; /* Màu xanh sáng */
+        border-color: #90caf9; /* Màu xanh đậm hơn */
+      }
+
+      .education {
+        background-color: #f1f8e9; /* Màu xanh lá nhạt */
+        border-color: #a5d6a7; /* Màu xanh lá đậm hơn */
+      }
+
+      .hard-skills {
+        background-color: #fce4ec; /* Màu hồng nhạt */
+        border-color: #f48fb1; /* Màu hồng đậm hơn */
+      }
+
+      .soft-skills {
+        background-color: #fff8e1; /* Màu vàng nhạt */
+        border-color: #ffecb3; /* Màu vàng đậm hơn */
+      }
+
+      .skills {
+        background-color: #e0f7fa; /* Màu xanh sáng */
+        border-color: #80deea; /* Màu xanh đậm hơn */
+      }
+
+      .experience {
+        background-color: #fff3e0; /* Màu cam nhạt */
+        border-color: #ffcc80; /* Màu cam đậm hơn */
+      }
+
+      .projects {
+        background-color: #ede7f6; /* Màu tím nhạt */
+        border-color: #b39ddb; /* Màu tím đậm hơn */
+      }
+
+      .future-goals {
+        background-color: #e8f5e9; /* Màu xanh lá nhạt */
+        border-color: #81c784; /* Màu xanh lá đậm hơn */
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #666;
+        border: 1px solid #b0bec5; /* Màu xám nhạt */
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      footer h2 {
+        margin-bottom: 10px;
+      }
+
+      .navigation-links {
+        margin-top: 10px;
+      }
+
+      .navigation-links a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #007bff; /* Màu xanh dương */
+      }
+
+      .navigation-links a:hover {
+        text-decoration: underline;
+      }
+
+      footer ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      footer ul li {
+        margin: 10px 0;
+      }
+
+      footer audio {
+        margin: 0 auto;
+        display: block;
+        max-width: 300px;
+      }
+
+      .additional-content {
+        background-color: #f1f8e9; /* Màu nền xanh lá nhạt */
+        border: 1px solid #a5d6a7; /* Màu viền xanh lá đậm hơn */
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-top: 20px; /* Khoảng cách trên */
+      }
+
+      .additional-content h2 {
+        color: #004d40; /* Màu xanh đậm */
+        margin-bottom: 10px;
+      }
+
+      .additional-content p {
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="left-margin"></div>
+      <div class="content">
+        <!-- Header -->
+        <header id="top">
+          <div class="profile">
+            <img src="anhCV.JPG" alt="Ảnh đại diện" class="profile-img" />
+            <h1>Nguyễn Gia Khánh</h1>
+            <p>Web Developer</p>
+          </div>
+        </header>
+
+        <div class="flex-container">
+          <section class="contact flex-item" id="contact">
+            <h2>Thông tin liên hệ</h2>
+            <ul>
+              <li>Email: nggiakhanh10@gmail.com</li>
+              <li>Điện thoại: 0827422495</li>
+              <li>Địa chỉ: Tây Hồ Hà Nội</li>
+            </ul>
+          </section>
+
+          <section class="education flex-item" id="education">
+            <h2>Học vấn</h2>
+            <ul>
+              <li>
+                <strong>Đại học Mỏ Địa Chất</strong> - Chuyên ngành Công nghệ
+                Thông tin
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="flex-container">
+          <section class="hard-skills flex-item" id="hard-skills">
+            <h2>Kỹ năng cứng</h2>
+            <ul>
+              <li>HTML, CSS, JavaScript</li>
+              <li>React, Angular</li>
+              <li>Node.js, Express.js</li>
+              <li>Database: MySQL, MongoDB</li>
+            </ul>
+          </section>
+
+          <section class="soft-skills flex-item" id="soft-skills">
+            <h2>Kỹ năng mềm</h2>
+            <ul>
+              <li>Kỹ năng giao tiếp</li>
+              <li>Giải quyết vấn đề</li>
+              <li>Quản lý thời gian</li>
+              <li>Làm việc nhóm</li>
+            </ul>
+          </section>
+        </div>
+
+        <section class="skills" id="skills">
+          <h2>Kỹ năng tổng quát</h2>
+          <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Angular</li>
+            <li>Git, GitHub</li>
+          </ul>
+        </section>
+
+        <div class="flex-container">
+          <section class="experience flex-item" id="experience">
+            <h2>Kinh nghiệm làm việc</h2>
+            <ul>
+              <li>
+                <strong>Công ty XYZ</strong> - Frontend Developer (2021-2023)
+              </li>
+              <p>
+                Phát triển và bảo trì các trang web sử dụng HTML, CSS,
+                JavaScript.
+              </p>
+            </ul>
+          </section>
+
+          <section class="projects flex-item" id="projects">
+            <h2>Dự án</h2>
+            <ul>
+              <li>
+                <strong>Website thương mại điện tử</strong> - Sử dụng React và
+                Node.js
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <section class="future-goals" id="future-goals">
+          <h2>Mục tiêu trong tương lai</h2>
+          <ul>
+            <li>Trở thành Fullstack Developer</li>
+            <li>Phát triển ứng dụng web hiệu suất cao</li>
+            <li>Đóng góp vào các dự án mã nguồn mở</li>
+          </ul>
+        </section>
+
+        <footer id="footer">
+          <h2>Danh sách nhạc</h2>
+          <ul>
+            <li>
+              <audio controls>
+                <source src="nhac1.mp3" type="audio/mpeg" />
+                Trình duyệt của bạn không hỗ trợ phát nhạc.
+              </audio>
+            </li>
+            <li>
+              <audio controls>
+                <source src="nhac2.mp3" type="audio/mpeg" />
+                Trình duyệt của bạn không hỗ trợ phát nhạc.
+              </audio>
+            </li>
+            <li>
+              <audio controls>
+                <source src="nhac3.mp3" type="audio/mpeg" />
+                Trình duyệt của bạn không hỗ trợ phát nhạc.
+              </audio>
+            </li>
+            <li>
+              <audio controls>
+                <source src="nhac4.mp3" type="audio/mpeg" />
+                Trình duyệt của bạn không hỗ trợ phát nhạc.
+              </audio>
+            </li>
+          </ul>
+
+          <div class="navigation-links">
+            <a href="#top">Đi tới đầu trang</a>
+            <a
+              href="https://www.facebook.com/khanh.nguyengia.319/"
+              target="_blank"
+              >Facebook cá nhân</a
+            >
+          </div>
+        </footer>
+
+        <section class="additional-content">
+          <h2>Thông tin Sinh Viên</h2>
+          <p>Nguyễn Gia Khánh - 2121050258</p>
+        </section>
+      </div>
+      <div class="right-margin"></div>
+    </div>
+
+    <script>
+      // Hàm cuộn mượt mà đến đầu trang
+      // scrolltotop ngăn sự kiện mặc định liên kết
+      // -> sau đó window.scrollto để cuộn mượt về đầu trang khi được nhấp vào
+      function scrollToTop(event) {
+        event.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      // Gán sự kiện cho liên kết "Đi tới đầu trang"
+      document
+        .querySelector('.navigation-links a[href="#top"]')
+        .addEventListener("click", scrollToTop);
+
+      // Thêm thông báo khi nhấp vào liên kết Facebook
+      // Khi người dùng nhấp vào liên kết có thuộc tính target="_blank" (mở liên kết trong tab mới), một thông báo sẽ xuất hiện
+      // thông báo người dùng rằng họ đang rời khỏi trang hiện tại để truy cập vào Facebook.
+      document
+        .querySelector('.navigation-links a[target="_blank"]')
+        .addEventListener("click", function () {
+          alert("Bạn đang rời khỏi trang hiện tại để truy cập vào Facebook.");
+        });
+
+      // Tạo hiệu ứng thu gọn/mở rộng cho các phần mục tiêu
+      // lặp qua tất cả các phần tử section để tìm tiêu đề h2 để dổi
+      // con trỏ chuột để cho người dùng biết có thể nhấp vào
+      // Khi tiêu đề được nhấp, đoạn mã kiểm tra thuộc tính display của danh sách <ul> trong phần đó.
+      // Nếu danh sách hiện đang được ẩn (display: none), nó sẽ được
+      // hiển thị (display: block). Ngược lại, nếu danh sách đang được hiển thị, nó sẽ được ẩn.
+      document.querySelectorAll("section").forEach((section) => {
+        const title = section.querySelector("h2");
+        title.style.cursor = "pointer";
+        title.addEventListener("click", () => {
+          const content = section.querySelector("ul");
+          if (content.style.display === "none") {
+            content.style.display = "block";
+          } else {
+            content.style.display = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
