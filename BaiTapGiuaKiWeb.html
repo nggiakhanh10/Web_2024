@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Bán Hàng</title>
+    <style>
+      /* Cài đặt cơ bản */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        font-size: 20px; /* Tăng kích thước font chữ toàn trang */
+        display: flex;
+      }
+
+      /* Bố cục cho phần chính */
+      .container {
+        display: flex;
+        width: 100%; /* Chiếm 100% chiều rộng */
+      }
+
+      /* Phần khung xám */
+      .product-container {
+        width: 70%; /* Khung xám chiếm 70% */
+        background-color: #ccc; /* Khung màu xám */
+        padding: 30px; /* Padding cho khung */
+        border-radius: 8px;
+        box-sizing: border-box; /* Để padding không làm tăng chiều rộng */
+      }
+
+      /* Phần chữ dẫn đến trang khác */
+      .breadcrumb {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 20px; /* Khoảng cách phía dưới */
+      }
+
+      .breadcrumb a {
+        text-decoration: none; /* Bỏ gạch chân */
+        color: blue; /* Màu chữ cho liên kết */
+      }
+
+      .breadcrumb a:hover {
+        text-decoration: underline; /* Gạch chân khi hover */
+      }
+
+      /* Phần hình ảnh sản phẩm (bên trái) */
+      .product-image {
+        width: 40%; /* Chiếm 40% khung xám */
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      /* Ảnh sản phẩm */
+      .product-image img {
+        max-width: 100%; /* Ảnh chiếm 100% chiều rộng của khung */
+        border-radius: 8px;
+      }
+
+      /* Phần thông tin sản phẩm (bên phải) */
+      .product-details {
+        width: 55%; /* Chiếm 55% khung xám */
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 20px; /* Khoảng cách bên trái */
+      }
+
+      .product-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .product-price {
+        display: flex;
+        align-items: center;
+      }
+
+      .original-price {
+        text-decoration: line-through;
+        color: #888;
+        margin-right: 10px;
+        font-size: 20px;
+      }
+
+      .sale-price {
+        font-size: 24px;
+        color: red;
+        font-weight: bold;
+      }
+
+      /* Thông tin vận chuyển */
+      .shipping-info {
+        margin-top: 10px;
+        color: #555;
+        font-size: 18px;
+      }
+
+      .shipping-info .icon {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+
+      .shipping-info p {
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+      }
+
+      .shipping-info a {
+        color: blue;
+        text-decoration: none;
+      }
+
+      .shipping-info a:hover {
+        text-decoration: underline;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 20px; /* Tăng kích thước nút */
+        cursor: pointer;
+        font-size: 18px; /* Tăng kích thước chữ cho nút */
+        border-radius: 5px;
+      }
+
+      /* Nút Mua Ngay */
+      .buy-now {
+        background-color: red; /* Nút Mua Ngay màu đỏ */
+        color: white;
+        border: none;
+        margin-left: 5px;
+      }
+
+      .buy-now:hover {
+        background-color: darkred; /* Màu khi hover */
+      }
+
+      /* Nút Thêm vào giỏ hàng */
+      .add-to-cart {
+        margin-left: 10px; /* Khoảng cách giữa nút mua ngay và thêm vào giỏ hàng */
+        display: flex;
+        align-items: center;
+        background-color: white; /* Nền nút trắng */
+        color: red; /* Chữ màu đỏ */
+        border: 2px solid red; /* Viền đỏ */
+      }
+
+      .add-to-cart img {
+        width: 20px; /* Kích thước biểu tượng giỏ hàng */
+        height: 20px;
+        margin-right: 5px; /* Khoảng cách giữa biểu tượng và chữ */
+      }
+
+      /* Phần bảng thông tin sản phẩm */
+      .product-info-table {
+        width: 100%; /* Đặt chiều rộng bảng là 100% */
+        margin-top: 20px; /* Khoảng cách phía trên bảng */
+        border-collapse: collapse; /* Gộp các viền */
+      }
+
+      .product-info-table td {
+        border: 1px solid #888; /* Viền bảng */
+        padding: 10px; /* Khoảng cách trong bảng */
+      }
+
+      /* Phần giới thiệu sản phẩm (bên phải) */
+      .product-info {
+        width: 30%; /* Chiếm 30% trang */
+        padding: 30px; /* Padding cho bên phải */
+        color: red; /* Đổi màu chữ thành màu đỏ */
+      }
+
+      .product-info p {
+        line-height: 1.8;
+        font-size: 20px; /* Tăng kích thước chữ cho mô tả */
+      }
+
+      /* Phần màu sắc */
+      .color-options {
+        margin-top: 20px;
+        font-weight: bold; /* Đặt chữ màu sắc in đậm */
+      }
+
+      .color-options img {
+        width: 100px; /* Giảm kích thước ảnh */
+        height: 100px; /* Giảm kích thước ảnh */
+        margin: 10px; /* Khoảng cách giữa các ảnh */
+      }
+
+      /* Phần số lượng */
+      .quantity-container {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .quantity-button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px;
+        margin: 0 5px;
+      }
+
+      .quantity-input {
+        width: 50px;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      /* Đặt nút vào cùng một dòng */
+      .action-buttons {
+        display: flex; /* Sử dụng flexbox */
+        align-items: center; /* Canh giữa dọc */
+        margin-top: 20px; /* Khoảng cách phía trên */
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <!-- Bên trái: Khung xám -->
+        <div class="product-container">
+          <p class="breadcrumb">
+            <a href="https://daotaodaihoc.humg.edu.vn/#/home">Trang chủ</a> >
+            <a href="https://daotaodaihoc.humg.edu.vn/#/home">Gia dụng</a> >
+            <a href="https://daotaodaihoc.humg.edu.vn/#/home"
+              >Đồ dùng nhà bếp</a
+            >
+            >
+            <a href="https://daotaodaihoc.humg.edu.vn/#/home"
+              >Các loại máy làm bánh</a
+            >
+            >
+            <a href="https://daotaodaihoc.humg.edu.vn/#/home">Máy nướng bánh</a>
+          </p>
+          <!-- Bên trái: Hình ảnh sản phẩm -->
+          <div class="product-image">
+            <img
+              src="https://bizweb.dktcdn.net/thumb/1024x1024/100/365/685/products/frteyrrul.png?v=1625596355887"
+              alt="Sản phẩm"
+            />
+          </div>
+          <!-- Bên phải: Thông tin sản phẩm -->
+          <div class="product-details">
+            <p class="product-name">Máy Nướng Bánh mì giữa kì môn web</p>
+            <div class="product-price">
+              <span class="original-price">800,000₫</span>
+              <span class="sale-price">500,000₫</span>
+            </div>
+
+            <!-- Thông tin vận chuyển -->
+            <div class="shipping-info">
+              <p>
+                <img
+                  class="icon"
+                  src="https://img.pikbest.com/png-images/qiantu/black-truck-icon-free-illustration_2690975.png!w700wp"
+                  alt="Icon Xe Tải"
+                />
+                Miễn phí vận chuyển | Hỗ trợ ship: 50,000₫
+              </p>
+              <p>
+                <a href="https://daotaodaihoc.humg.edu.vn/#/home"
+                  >Chọn địa chỉ giao hàng</a
+                >, để dự báo thời gian giao hàng, phí đóng gói, vận chuyển chính
+                xác nhất
+              </p>
+            </div>
+
+            <div class="color-options">
+              <p>Màu sắc:</p>
+              <div>
+                <a href="link_to_white_color">
+                  <img
+                    src="https://bizweb.dktcdn.net/thumb/1024x1024/100/365/685/products/frteyrrul.png?v=1625596355887"
+                    alt="Màu Trắng"
+                  />
+                </a>
+                <a href="link_to_black_color">
+                  <img
+                    src="https://img.gigadigital.vn/image/1712631233798-may-nuong-banh-mi-smeg-tsf01wheu-mau-trang-3.png"
+                    alt="Màu Đen"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="quantity-container">
+              <button class="quantity-button">-</button>
+              <input
+                class="quantity-input"
+                type="number"
+                value="1"
+                min="1"
+                max="10"
+              />
+              <button class="quantity-button">+</button>
+            </div>
+
+            <div class="action-buttons">
+              <button class="buy-now">Mua Ngay</button>
+              <button class="add-to-cart">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/34/34568.png"
+                  alt="Giỏ Hàng"
+                />
+                Thêm vào giỏ hàng
+              </button>
+            </div>
+          </div>
+
+          <!-- Bảng thông tin sản phẩm -->
+          <table class="product-info-table">
+            <tr>
+              <td><strong>Thông tin sản phẩm</strong></td>
+              <td>Máy nướng bánh mì có khả năng nướng 2 lát cùng lúc.</td>
+            </tr>
+            <tr>
+              <td><strong>Chất liệu</strong></td>
+              <td>Thép không gỉ.</td>
+            </tr>
+            <tr>
+              <td><strong>Thời gian bảo hành</strong></td>
+              <td>12 tháng.</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Bên phải: Giới thiệu sản phẩm -->
+        <div class="product-info">
+          <h2>Giới thiệu sản phẩm</h2>
+          <p>
+            Máy nướng bánh mì giữa kì môn web giúp bạn dễ dàng làm các loại bánh
+            mì yêu thích.
+          </p>
+          <p>
+            Với thiết kế hiện đại và tính năng tiện dụng, sản phẩm là sự lựa
+            chọn hoàn hảo cho mỗi bữa ăn của gia đình.
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
