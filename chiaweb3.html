@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three Equal Columns</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .column {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+        background-color: #f4f4f4;
+      }
+
+      .column:nth-child(1) {
+        background-color: #ff9999;
+      }
+
+      .column:nth-child(2) {
+        background-color: #99ccff;
+      }
+
+      .column:nth-child(3) {
+        background-color: #99ff99;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="column">Column 1</div>
+      <div class="column">Column 2</div>
+      <div class="column">Column 3</div>
+    </div>
+  </body>
+</html>
