@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang bán hàng</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .product {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .product-images {
+        width: 40%;
+        position: relative;
+      }
+
+      .main-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .thumbnail-images {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+
+      .thumbnail-images img {
+        width: 24%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .thumbnail-images img:hover {
+        transform: scale(1.05);
+      }
+
+      .like-share-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .share {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .share i {
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .like {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #ff0000;
+      }
+
+      .like i {
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .product-details {
+        width: 55%;
+      }
+
+      .product-details h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .stars {
+        color: #ffcc00;
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .rating-count {
+        color: #888;
+      }
+
+      .product-details p {
+        font-size: 18px;
+        color: #555;
+      }
+
+      .price-container {
+        background-color: rgba(200, 200, 200, 0.3);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .price {
+        color: #ff6600;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .original-price {
+        color: #888;
+        font-size: 16px;
+        text-decoration: line-through;
+      }
+
+      .policy-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+        margin-left: -20px;
+        color: #888;
+        font-size: 14px;
+        gap: 70px;
+      }
+
+      .policy-container i {
+        color: #4caf50;
+        margin-right: 5px;
+      }
+
+      .additional-policy-container {
+        display: flex;
+        justify-content: space-around;
+        gap: 170px;
+        margin-top: 20px;
+        margin-left: -9px;
+        color: #888;
+        font-size: 14px;
+      }
+
+      .free-ship {
+        display: flex;
+        justify-content: space-around;
+        gap: -600px;
+        margin-top: 20px;
+        margin-left: -150px;
+        color: #888;
+        font-size: 14px;
+      }
+
+      .additional-policy-container span {
+        margin-bottom: 5px;
+      }
+
+      .buy-btn,
+      .add-to-cart-btn {
+        display: inline-block;
+        background-color: #ff6600;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      .buy-btn:hover,
+      .add-to-cart-btn:hover {
+        background-color: #e65c00;
+      }
+
+      .add-to-cart-btn {
+        margin-right: 10px;
+      }
+
+      .color-selection-container,
+      .size-selection-container {
+        margin-top: 20px;
+      }
+
+      .color-selection-container h2,
+      .size-selection-container h2 {
+        font-size: 12px;
+        color: #888;
+        font-weight: normal;
+        margin: 0;
+      }
+
+      .color-options,
+      .size-options {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .color-option,
+      .size-option {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .color-option:hover,
+      .size-option:hover {
+        background-color: #f0f0f0;
+      }
+
+      .size-conversion {
+        font-size: 12px;
+        color: #1e90ff; /* Màu xanh nước biển */
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .size-conversion:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script>
+      function changeImage(src) {
+        document.getElementById("mainImage").src = src;
+      }
+
+      function selectColor(color) {
+        console.log("Màu đã chọn: " + color);
+      }
+
+      function selectSize(size) {
+        console.log("Size đã chọn: " + size);
+      }
+
+      function showSizeConversion() {
+        alert("Bảng quy đổi size: \nS: 36-38, \nM: 38-40, \nL: 40-42");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="product">
+        <div class="product-images">
+          <img
+            id="mainImage"
+            src="https://product.hstatic.net/200000551971/product/3250689a285ef800a14f_6eb5d886839e4e37aa2e0714d05c7df4_grande.jpg"
+            alt="Sản phẩm lớn"
+            class="main-image"
+          />
+          <div class="thumbnail-images">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0681/2821/1221/files/Black_LTSRECOA422UD0101FW23_1_533x.jpg?v=1711696947"
+              alt="Ảnh nhỏ 1"
+              onclick="changeImage(this.src)"
+            />
+            <img
+              src="https://dukystore.vn/wp-content/uploads/2022/09/ao-thun-in-hinh-can-tho-mau-trang-03-150x150.jpg"
+              alt="Ảnh nhỏ 2"
+              onclick="changeImage(this.src)"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSed4u6TTe5DO5tgkYkUt3hLaas5nA6j9HdlA&s"
+              alt="Ảnh nhỏ 3"
+              onclick="changeImage(this.src)"
+            />
+            <!-- <img
+              src="https://via.placeholder.com/150"
+              alt="Ảnh nhỏ 4"
+              onclick="changeImage(this.src)"
+            /> -->
+          </div>
+          <div class="like-share-container">
+            <div class="share">
+              <span>Chia sẻ:</span>
+              <i class="fab fa-facebook"></i>
+              <i class="fab fa-facebook-messenger"></i>
+              <i class="fab fa-twitter"></i>
+            </div>
+            <div class="like">
+              <i class="fas fa-heart"></i> <span>1.2k lượt thích</span>
+            </div>
+          </div>
+        </div>
+        <div class="product-details">
+          <h1>Áo thun nam vải cotton siêu thoáng khí</h1>
+          <div class="rating">
+            <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+            <div class="rating-count">(1,024 lượt đánh giá)</div>
+          </div>
+          <!-- <p>alo</p> -->
+          <div class="price-container">
+            <div class="original-price">Giá gốc: 350,000 ₫</div>
+            <div class="price">Giá: 250,000 ₫</div>
+          </div>
+          <div class="policy-container">
+            <span>Trả hàng trong vòng 15 ngày</span>
+            <span><i class="fas fa-circle-check"></i> Đổi hàng miễn phí</span>
+            <span>Trả hàng miễn phí</span>
+          </div>
+          <div class="additional-policy-container">
+            <span>Bảo hiểm</span>
+            <span>Bảo hiểm thời trang</span>
+            <span>Tìm hiểu thêm</span>
+          </div>
+          <div class="free-ship">
+            <span>Vận chuyển</span>
+            <span>Miễn Phí vận chuyển</span>
+          </div>
+
+          <!-- Phần chọn màu sắc -->
+          <div class="color-selection-container">
+            <h2>Chọn màu sắc:</h2>
+            <div class="color-options">
+              <div class="color-option" onclick="selectColor('Trắng')">
+                Màu 1: Trắng
+              </div>
+              <div class="color-option" onclick="selectColor('Đen')">
+                Màu 2: Đen
+              </div>
+              <div class="color-option" onclick="selectColor('Đỏ')">
+                Màu 3: Đỏ
+              </div>
+            </div>
+          </div>
+
+          <!-- Phần chọn kích thước -->
+          <div class="size-selection-container">
+            <h2>Chọn kích thước:</h2>
+            <div class="size-options">
+              <div class="size-option" onclick="selectSize('S')">Size S</div>
+              <div class="size-option" onclick="selectSize('M')">Size M</div>
+              <div class="size-option" onclick="selectSize('L')">Size L</div>
+            </div>
+            <div class="size-conversion" onclick="showSizeConversion()">
+              Bảng quy đổi size
+            </div>
+          </div>
+
+          <div style="margin-top: 20px">
+            <a href="#" class="add-to-cart-btn"
+              ><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</a
+            >
+            <a href="#" class="buy-btn">Mua ngay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
