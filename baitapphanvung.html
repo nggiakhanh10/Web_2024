@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      .all {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        gap: 5px;
+      }
+
+      .header {
+        background-color: white;
+        height: 50%;
+        display: flex;
+        gap: 5px;
+      }
+
+      .header .left {
+        flex: 1;
+        background-image: url("https://images.squarespace-cdn.com/content/v1/5930dc9237c5817c00b10842/1607929454387-Z64LGZAMXVUKBRXCGC0X/35189853_2076230709311065_3947220011839389696_o.png?format=750w");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .header .right {
+        flex: 3;
+        background-image: url("https://images.squarespace-cdn.com/content/v1/5930dc9237c5817c00b10842/1607929473054-4ZF0ZODF1ZHAK7H7VLHI/12.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .main {
+        background-color: white;
+        height: 30%;
+        display: flex;
+        gap: 5px;
+      }
+
+      .main .left {
+        flex: 4;
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiOWmrJtcGjEneed8q2E5pbFW6ifdoAy4WLg&s");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .main .right {
+        flex: 1;
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7E4feixkxBKyrs8FL8pSVsFRnqqHlFOpeEQ&s");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .footer {
+        background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20240719/pngtree-a-lush-verdant-expanse-of-green-grass-stretches-out-in-this-image_16017133.jpg");
+        height: 20%;
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="all">
+      <div class="header">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+      <div class="main">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </body>
+</html>
